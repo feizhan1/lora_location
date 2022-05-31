@@ -63,7 +63,7 @@ class _State extends State<_Body> {
     LatLngBounds bound =
         LatLngBounds(southwest: LatLng(25.0, 70.0), northeast: LatLng(45, 117));
     CameraUpdate update = CameraUpdate.newLatLngBounds(bound, 10);
-    _controller?.moveCamera(update);
+    _controller.moveCamera(update);
   }
 
   @override

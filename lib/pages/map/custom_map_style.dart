@@ -27,9 +27,6 @@ class _CustomMapStyleState extends State<_CustomMapStyleBody> {
   CustomStyleOptions _customStyleOptions = CustomStyleOptions(false);
   //加载自定义地图样式
   void _loadCustomData() async {
-    if (null == _customStyleOptions) {
-      _customStyleOptions = CustomStyleOptions(false);
-    }
     ByteData styleByteData = await rootBundle.load('assets/style.data');
     _customStyleOptions.styleData = styleByteData.buffer.asUint8List();
     ByteData styleExtraByteData =
@@ -92,8 +89,6 @@ class _CustomMapStyleState extends State<_CustomMapStyleBody> {
   }
 
   void onMapCreated(AMapController controller) {
-    if (null != controller) {
-      _mapCreated = true;
-    }
+    _mapCreated = true;
   }
 }

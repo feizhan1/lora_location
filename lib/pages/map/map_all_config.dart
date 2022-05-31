@@ -76,9 +76,6 @@ class _MapUiBodyState extends State<_MapUiBody> {
   }
 
   void _loadCustomData() async {
-    if (null == _customStyleOptions) {
-      _customStyleOptions = CustomStyleOptions(false);
-    }
     ByteData styleByteData = await rootBundle.load('assets/style.data');
     _customStyleOptions.styleData = styleByteData.buffer.asUint8List();
     ByteData styleExtraByteData =
@@ -402,44 +399,26 @@ class _MapUiBodyState extends State<_MapUiBody> {
   }
 
   void _onLocationChanged(AMapLocation location) {
-    if (null == location) {
-      return;
-    }
     print('_onLocationChanged ${location.toJson()}');
   }
 
   void _onCameraMove(CameraPosition cameraPosition) {
-    if (null == cameraPosition) {
-      return;
-    }
     print('onCameraMove===> ${cameraPosition.toMap()}');
   }
 
   void _onCameraMoveEnd(CameraPosition cameraPosition) {
-    if (null == cameraPosition) {
-      return;
-    }
     print('_onCameraMoveEnd===> ${cameraPosition.toMap()}');
   }
 
   void _onMapTap(LatLng latLng) {
-    if (null == latLng) {
-      return;
-    }
     print('_onMapTap===> ${latLng.toJson()}');
   }
 
   void _onMapLongPress(LatLng latLng) {
-    if (null == latLng) {
-      return;
-    }
     print('_onMapLongPress===> ${latLng.toJson()}');
   }
 
   void _onMapPoiTouched(AMapPoi poi) {
-    if (null == poi) {
-      return;
-    }
     print('_onMapPoiTouched===> ${poi.toJson()}');
   }
 }

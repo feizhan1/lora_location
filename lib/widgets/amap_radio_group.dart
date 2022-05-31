@@ -43,31 +43,25 @@ class _AMapRadioGroupState extends State<AMapRadioGroup> {
               setState(() {
                 _groupValue = value;
               });
-              if (null != widget.onChanged) {
-                widget.onChanged(value);
-              }
+              widget.onChanged(value);
             },
           ),
         ],
       );
     }
 
-    if (widget.radioValueMap != null) {
-      if (radioList == null) {
-        radioList = [];
-      }
-      widget.radioValueMap.forEach((key, value) {
-        radioList.add(_myRadio(key, value));
-      });
-    }
+    widget.radioValueMap.forEach((key, value) {
+      radioList.add(_myRadio(key, value));
+    });
     return Container(
       padding: EdgeInsets.all(5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-         if(widget.groupLabel != null)  Text(widget.groupLabel,
-                  style: TextStyle(fontWeight: FontWeight.w600)),
+          Text(widget.groupLabel,
+                  style: TextStyle(fontWeight: FontWeight.w600),
+          ),
           Container(
             padding: EdgeInsets.only(left: 10),
             child: AMapGradView(

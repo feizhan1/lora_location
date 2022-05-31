@@ -34,7 +34,7 @@ class _State extends State<_Body> {
   ];
 
   Map<String, Polygon> _polygons = <String, Polygon>{};
-  late String selectedPolygonId;
+  String? selectedPolygonId;
 
   void _onMapCreated(AMapController controller) {}
 
@@ -91,7 +91,7 @@ class _State extends State<_Body> {
     //有选中的Marker
     if (selectedPolygon != null) {
       setState(() {
-        _polygons[selectedPolygonId] =
+        _polygons[selectedPolygonId!] =
             selectedPolygon.copyWith(strokeWidthParam: currentWidth);
       });
     } else {
@@ -102,7 +102,7 @@ class _State extends State<_Body> {
   void _changeColors() {
     final Polygon polygon = _polygons[selectedPolygonId]!;
     setState(() {
-      _polygons[selectedPolygonId] = polygon.copyWith(
+      _polygons[selectedPolygonId!] = polygon.copyWith(
         strokeColorParam: colors[++colorsIndex % colors.length],
         fillColorParam: colors[(colorsIndex + 1) % colors.length],
       );
@@ -112,7 +112,7 @@ class _State extends State<_Body> {
   Future<void> _toggleVisible(value) async {
     final Polygon polygon = _polygons[selectedPolygonId]!;
     setState(() {
-      _polygons[selectedPolygonId] = polygon.copyWith(
+      _polygons[selectedPolygonId!] = polygon.copyWith(
         visibleParam: value,
       );
     });
@@ -126,7 +126,7 @@ class _State extends State<_Body> {
     newPoints.add(LatLng(39.828809, 116.360364));
 
     setState(() {
-      _polygons[selectedPolygonId] = polygon.copyWith(
+      _polygons[selectedPolygonId!] = polygon.copyWith(
         pointsParam: newPoints,
       );
     });

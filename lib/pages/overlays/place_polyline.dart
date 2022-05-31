@@ -33,7 +33,7 @@ class _State extends State<_Body> {
     Colors.pink,
   ];
   Map<String, Polyline> _polylines = <String, Polyline>{};
-  late String selectedPolylineId;
+  String? selectedPolylineId;
 
   void _onMapCreated(AMapController controller) {}
 
@@ -83,7 +83,7 @@ class _State extends State<_Body> {
     //有选中的Marker
     if (selectedPolyline != null) {
       setState(() {
-        _polylines[selectedPolylineId] =
+        _polylines[selectedPolylineId!] =
             selectedPolyline.copyWith(widthParam: currentWidth);
       });
     } else {
@@ -111,7 +111,7 @@ class _State extends State<_Body> {
     }
 
     setState(() {
-      _polylines[selectedPolylineId] =
+      _polylines[selectedPolylineId!] =
           polyline.copyWith(dashLineTypeParam: currentType);
     });
   }
@@ -128,7 +128,7 @@ class _State extends State<_Body> {
       capType = CapType.butt;
     }
     setState(() {
-      _polylines[selectedPolylineId] = polyline.copyWith(capTypeParam: capType);
+      _polylines[selectedPolylineId!] = polyline.copyWith(capTypeParam: capType);
     });
   }
 
@@ -144,7 +144,7 @@ class _State extends State<_Body> {
       joinType = JoinType.bevel;
     }
     setState(() {
-      _polylines[selectedPolylineId] =
+      _polylines[selectedPolylineId!] =
           polyline.copyWith(joinTypeParam: joinType);
     });
   }
@@ -153,7 +153,7 @@ class _State extends State<_Body> {
     final Polyline polyline = _polylines[selectedPolylineId]!;
     final double current = polyline.alpha;
     setState(() {
-      _polylines[selectedPolylineId] = polyline.copyWith(
+      _polylines[selectedPolylineId!] = polyline.copyWith(
         alphaParam: current < 0.1 ? 1.0 : current * 0.75,
       );
     });
@@ -162,7 +162,7 @@ class _State extends State<_Body> {
   Future<void> _toggleVisible(value) async {
     final Polyline polyline = _polylines[selectedPolylineId]!;
     setState(() {
-      _polylines[selectedPolylineId] = polyline.copyWith(
+      _polylines[selectedPolylineId!] = polyline.copyWith(
         visibleParam: value,
       );
     });
@@ -171,7 +171,7 @@ class _State extends State<_Body> {
   void _changeColor() {
     final Polyline polyline = _polylines[selectedPolylineId]!;
     setState(() {
-      _polylines[selectedPolylineId] = polyline.copyWith(
+      _polylines[selectedPolylineId!] = polyline.copyWith(
         colorParam: colors[++colorsIndex % colors.length],
       );
     });
@@ -185,7 +185,7 @@ class _State extends State<_Body> {
     newPoints.add(LatLng(39.835347, 116.34575));
 
     setState(() {
-      _polylines[selectedPolylineId] = polyline.copyWith(
+      _polylines[selectedPolylineId!] = polyline.copyWith(
         pointsParam: newPoints,
       );
     });

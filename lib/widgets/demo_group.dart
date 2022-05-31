@@ -24,7 +24,7 @@ class _GroupState extends State<DemoGroupWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.itemPages != null && widget.itemPages.length > 0) {
+    if (widget.itemPages.length > 0) {
       _hasItemPages = true;
     } else {
       _hasItemPages = false;

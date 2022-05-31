@@ -21,7 +21,7 @@ class _Body extends StatefulWidget {
 
 class _BodyState extends State<_Body> {
   late AMapController _mapController;
-  late String _currentZoom;
+  String? _currentZoom;
   @override
   Widget build(BuildContext context) {
     final AMapWidget amap = AMapWidget(
@@ -111,18 +111,16 @@ class _BodyState extends State<_Body> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    _currentZoom != null
-                        ? Container(
+                    if(_currentZoom != null) Container(
                             width: MediaQuery.of(context).size.width,
                             color: Colors.grey,
                             padding: EdgeInsets.all(5),
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              _currentZoom,
+                              _currentZoom!,
                               style: TextStyle(color: Colors.white),
                             ),
-                          )
-                        : SizedBox(),
+                          ),
                     Container(
                       child: _cameraOptions(),
                     ),
@@ -151,7 +149,7 @@ class _BodyState extends State<_Body> {
   }
 
   void _changeCameraPosition() {
-    _mapController?.moveCamera(
+    _mapController.moveCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
             //中心点
@@ -169,7 +167,7 @@ class _BodyState extends State<_Body> {
 
   //改变显示级别
   void _changeCameraZoom() {
-    _mapController?.moveCamera(
+    _mapController.moveCamera(
       CameraUpdate.zoomTo(18),
       animated: true,
     );
@@ -177,7 +175,7 @@ class _BodyState extends State<_Body> {
 
   //级别加1
   void _zoomIn() {
-    _mapController?.moveCamera(
+    _mapController.moveCamera(
       CameraUpdate.zoomIn(),
       animated: true,
     );
@@ -185,7 +183,7 @@ class _BodyState extends State<_Body> {
 
   //级别减1
   void _zoomOut() {
-    _mapController?.moveCamera(
+    _mapController.moveCamera(
       CameraUpdate.zoomOut(),
       animated: true,
     );
@@ -193,7 +191,7 @@ class _BodyState extends State<_Body> {
 
   //改变显示区域
   void _changeLatLngBounds() {
-    _mapController?.moveCamera(
+    _mapController.moveCamera(
       CameraUpdate.newLatLngBounds(
           LatLngBounds(
               southwest: LatLng(33.789925, 104.838326),
@@ -212,14 +210,10 @@ class _BodyState extends State<_Body> {
     );
   }
 
-  FlatButton _createMyFloatButton(String label, void Function()? onPressed) {
-    return FlatButton(
+  TextButton _createMyFloatButton(String label, void Function()? onPressed) {
+    return TextButton(
       onPressed: onPressed,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      textColor: Colors.white,
-      highlightColor: Colors.blueAccent,
       child: Text(label),
-      color: Colors.blue,
     );
   }
 }

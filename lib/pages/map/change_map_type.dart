@@ -40,7 +40,7 @@ class _PageBodyState extends State<_PageBody> {
     final AMapWidget map = AMapWidget(
       apiKey: ConstConfig.amapApiKeys,
       //地图类型属性
-      mapType: _mapType ?? MapType.normal,
+      mapType: _mapType,
     );
     return Container(
       height: MediaQuery.of(context).size.height,
